@@ -1,0 +1,20 @@
+<.header>
+  Activity <%= @activity.id %>
+  <:subtitle>This is a activity record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/activities/#{@activity}/edit"}>
+      <.button>Edit activity</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @activity.name %></:item>
+  <:item title="Total distance"><%= @activity.total_distance %></:item>
+  <:item title="Total distance unit"><%= @activity.total_distance_unit %></:item>
+  <:item title="Total timer time"><%= @activity.total_timer_time %></:item>
+  <:item title="Total timer time unit"><%= @activity.total_timer_time_unit %></:item>
+  <:item title="Timestamp"><%= @activity.timestamp %></:item>
+</.list>
+
+<.back navigate={~p"/activities"}>Back to activities</.back>

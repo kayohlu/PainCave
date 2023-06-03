@@ -1,0 +1,55 @@
+<.header>
+  Session <%= @session.id %>
+  <:subtitle>This is a session record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/sessions/#{@session}/edit"}>
+      <.button>Edit session</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Sport"><%= @session.sport %></:item>
+  <:item title="Sub sport"><%= @session.sub_sport %></:item>
+  <:item title="Total elapsed time"><%= @session.total_elapsed_time %></:item>
+  <:item title="Total elapsed time unit"><%= @session.total_elapsed_time_unit %></:item>
+  <:item title="Total distance"><%= @session.total_distance %></:item>
+  <:item title="Total distance unit"><%= @session.total_distance_unit %></:item>
+  <:item title="Total timer time"><%= @session.total_timer_time %></:item>
+  <:item title="Total timer time unit"><%= @session.total_timer_time_unit %></:item>
+  <:item title="Total elapsed time"><%= @session.total_elapsed_time %></:item>
+  <:item title="Total elapsed time unit"><%= @session.total_elapsed_time_unit %></:item>
+  <:item title="Total moving time"><%= @session.total_moving_time %></:item>
+  <:item title="Total moving time unit"><%= @session.total_moving_time_unit %></:item>
+  <:item title="Avg speed"><%= @session.avg_speed %></:item>
+  <:item title="Avg speed unit"><%= @session.avg_speed_unit %></:item>
+  <:item title="Max speed"><%= @session.max_speed %></:item>
+  <:item title="Max speed unit"><%= @session.max_speed_unit %></:item>
+  <:item title="Min heart rate"><%= @session.min_heart_rate %></:item>
+  <:item title="Min heart rate unit"><%= @session.min_heart_rate_unit %></:item>
+  <:item title="Avg heart rate"><%= @session.avg_heart_rate %></:item>
+  <:item title="Avg heart rate unit"><%= @session.avg_heart_rate_unit %></:item>
+  <:item title="Max heart rate"><%= @session.max_heart_rate %></:item>
+  <:item title="Max heart rate unit"><%= @session.max_heart_rate_unit %></:item>
+  <:item title="Avg power"><%= @session.avg_power %></:item>
+  <:item title="Avg power unit"><%= @session.avg_power_unit %></:item>
+  <:item title="Max power"><%= @session.max_power %></:item>
+  <:item title="Max power unit"><%= @session.max_power_unit %></:item>
+  <:item title="Threshold power"><%= @session.threshold_power %></:item>
+  <:item title="Threshold power unit"><%= @session.threshold_power_unit %></:item>
+  <:item title="Total ascent"><%= @session.total_ascent %></:item>
+  <:item title="Total ascent unit"><%= @session.total_ascent_unit %></:item>
+  <:item title="Total descent"><%= @session.total_descent %></:item>
+  <:item title="Total descent unit"><%= @session.total_descent_unit %></:item>
+  <:item title="Pool length"><%= @session.pool_length %></:item>
+  <:item title="Pool length unit"><%= @session.pool_length_unit %></:item>
+  <:item title="Stroke count"><%= @session.stroke_count %></:item>
+  <:item title="Stroke count unit"><%= @session.stroke_count_unit %></:item>
+  <:item title="Avg stroke count"><%= @session.avg_stroke_count %></:item>
+  <:item title="Avg stroke count unit"><%= @session.avg_stroke_count_unit %></:item>
+  <:item title="Avg stroke distance"><%= @session.avg_stroke_distance %></:item>
+  <:item title="Avg stroke distance unit"><%= @session.avg_stroke_distance_unit %></:item>
+  <:item title="Timestamp"><%= @session.timestamp %></:item>
+</.list>
+
+<.back navigate={~p"/sessions"}>Back to sessions</.back>

@@ -1,0 +1,8 @@
+<.header>
+  Edit Training <%= @training.id %>
+  <:subtitle>Use this form to manage training records in your database.</:subtitle>
+</.header>
+
+<.training_form changeset={@changeset} action={~p"/trainings/#{@training}"} />
+
+<.back navigate={~p"/trainings"}>Back to trainings</.back>

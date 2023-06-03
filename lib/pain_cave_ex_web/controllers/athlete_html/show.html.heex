@@ -1,0 +1,16 @@
+<.header>
+  Athlete <%= @athlete.id %>
+  <:subtitle>This is a athlete record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/athletes/#{@athlete}/edit"}>
+      <.button>Edit athlete</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @athlete.name %></:item>
+  <:item title="Email"><%= @athlete.email %></:item>
+</.list>
+
+<.back navigate={~p"/athletes"}>Back to athletes</.back>

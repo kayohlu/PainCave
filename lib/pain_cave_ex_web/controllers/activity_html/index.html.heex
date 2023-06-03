@@ -1,0 +1,240 @@
+<.header>
+  Listing Activities
+</.header>
+
+<div class="text-center font-medium text-gray-500 mt-10">
+  <ul class="flex flex-auto flex-wrap -mb-px">
+    <%= for sport <- PainCaveEx.Activities.sports do %>
+      <%= if sport == @sport do %>
+        <li class="mr-2">
+          <.link
+            navigate={~p"/activities?sport=#{sport}"}
+            class="inline-block p-4 text-palgreen border-b-2 border-palgreen rounded-t-lg active "
+          >
+            <%= sport |> String.capitalize() %>
+          </.link>
+        </li>
+      <% else %>
+        <li class="mr-2">
+          <.link
+            navigate={~p"/activities?sport=#{sport}"}
+            class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 "
+          >
+            <%= sport |> String.capitalize() %>
+          </.link>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<div class="space-y-4 mt-6">
+  <%= for activity <- @activities do %>
+    <%= for session <- activity.sessions do %>
+      <div class="bg-white grid grid-cols-9 items-center gap-4 rounded-xl">
+        <div class="p-3">
+          <div>
+            <h3 class="text-xl font-medium"><%= session.sport %></h3>
+            <span class="text-sm text-slate-400"><%= session.timestamp %></span>
+            <%!-- <div> --%>
+            <%!--   <span class="text-sm text-slate-400"><%= session.id%></span> --%>
+            <%!-- </div> --%>
+          </div>
+        </div>
+        <div class="p-3">
+          <div class="flex flex-row items-center justify-end">
+            <div class="flex flex-col">
+              <div class="flex flex-row justify-end items-center">
+                <span class="font-bold text-3xl"><%= session.avg_heart_rate %></span>
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="ml-1 w-6 h-6 text-red-400"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
+                  >
+                  </path>
+                </svg>
+              </div>
+              <p class="text-slate-400 text-s font-light tracking-wide text-right">Avg. BPM</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-3">
+          <div class="flex flex-row items-center justify-end">
+            <div class="flex flex-col">
+              <div class="flex flex-row justify-end items-center">
+                <span class="font-bold text-3xl"><%= session.avg_power || raw("-") %></span>
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="ml-1 w-6 h-6 text-yellow-500"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+                  >
+                  </path>
+                </svg>
+              </div>
+              <p class="text-slate-400 text-s font-light tracking-wide text-right">Avg. Watts</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-3">
+          <div class="flex flex-row items-center justify-end">
+            <div class="flex flex-col">
+              <div class="flex flex-row justify-end items-center">
+                <span class="font-bold text-3xl"><%= session.total_calories %></span>
+                <svg
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="ml-1 w-6 h-6 text-sky-400"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"
+                  >
+                  </path>
+                </svg>
+              </div>
+              <p class="text-slate-400 text-s font-light tracking-wide text-right">kCal</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-3 ">
+          <div class="flex flex-col">
+            <span class="tracking-wide text-right">
+              <%= Float.round(session.total_timer_time / 60, 2) %>
+            </span>
+            <p class="text-slate-400 text-s font-light tracking-wide text-right">Total time</p>
+          </div>
+        </div>
+        <div class="p-3 ">
+          <div class="flex flex-col">
+            <span class="ml-1 tracking-wide text-right">
+              <%= Float.round(session.total_distance / 1000, 2) %> KM
+            </span>
+            <p class="text-slate-400 text-s font-light tracking-wide text-right">
+              Total distance
+            </p>
+          </div>
+        </div>
+        <div class="p-3 ">
+          <div class="flex flex-col">
+            <span class="ml-1 tracking-wide text-right">
+              <%= if session.total_timer_time > 0 && session.total_distance > 0 do %>
+                <.human_time time={
+                  Float.round(session.total_timer_time / session.total_distance * 1000, 2)
+                } /> / KM
+              <% else %>
+                <%= "-" %>
+              <% end %>
+            </span>
+            <p class="text-slate-400 text-s font-light tracking-wide text-right">Avg pace</p>
+          </div>
+        </div>
+        <div class="p-3">
+          <div class="ml-10 w-24 h-24">
+            <div class="single-chart">
+              <svg viewBox="0 0 38 38" class="circular-chart">
+                <path
+                  class="circle-bg"
+                  pathLength="100"
+                  d="M18 33.9155 a -15.9155 -15.9155 0 0 1 0 -31.831 a 15.9155 15.9155 0 0 1 15.9155 15.9155"
+                >
+                </path>
+                <path
+                  class="circle"
+                  stroke="#33B194"
+                  pathLength="100"
+                  stroke-dasharray={ "#{(session.acute_chronic_training_load.chronic_load / (session.acute_chronic_training_load.acute_load + session.acute_chronic_training_load.chronic_load)) * 100}, 100" }
+                  d="M18 33.9155 a -15.9155 -15.9155 0 0 1 0 -31.831 a 15.9155 15.9155 0 0 1 15.9155 15.9155"
+                >
+                </path>
+                <path
+                  class="circle-bg"
+                  pathLength="100"
+                  d="M18 29.9155 a -11.936 -11.936 0 0 1 0 -23.872 a 11.936 11.936 0 0 1 11.936 11.936"
+                >
+                </path>
+                <path
+                  class="circle"
+                  stroke="#D86C6C"
+                  stroke-dasharray={ "#{(session.acute_chronic_training_load.acute_load / (session.acute_chronic_training_load.acute_load + session.acute_chronic_training_load.chronic_load)) * 100}, 100" }
+                  pathLength="100"
+                  d="M18 29.9155 a -11.936 -11.936 0 0 1 0 -23.872 a 11.936 11.936 0 0 1 11.936 11.936"
+                >
+                </path>
+                <text x="18" y="20" class="percentage">
+                  <%= Float.round(session.acute_chronic_training_load.ratio, 2) %>
+                </text>
+                <text x="18" y="24.35" class="percentage2">ACWR</text>
+                <text x="30" y="31" class="loads">
+                  <%= Float.round(session.acute_chronic_training_load.acute_load, 0) %>
+                </text>
+                <text x="30" y="37" class="loads">
+                  <%= Float.round(session.acute_chronic_training_load.chronic_load, 0) %>
+                </text>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="p-3">
+          <div class="flex flex-row items-center justify-end">
+            <div class="flex flex-col">
+              <div class="flex flex-row justify-end items-center">
+                <span class="font-bold text-3xl">
+                  <%= PainCaveEx.Sessions.calculate_training_stress_balance(session) %>
+                </span>
+                <%= if PainCaveEx.Sessions.calculate_training_stress_balance(session) < 0 do %>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 text-palred"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4.5 4.5l15 15m0 0V8.25m0 11.25H8.25"
+                    />
+                  </svg>
+                <% else %>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 text-palgreen"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                    />
+                  </svg>
+                <% end %>
+              </div>
+              <p class="text-slate-400 text-s font-light tracking-wide text-right">Form (TSB)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

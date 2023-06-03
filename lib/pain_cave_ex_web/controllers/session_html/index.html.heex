@@ -1,0 +1,69 @@
+<.header>
+  Listing Sessions
+  <:actions>
+    <.link href={~p"/sessions/new"}>
+      <.button>New Session</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="sessions" rows={@sessions} row_click={&JS.navigate(~p"/sessions/#{&1}")}>
+  <:col :let={session} label="Sport"><%= session.sport %></:col>
+  <:col :let={session} label="Sub sport"><%= session.sub_sport %></:col>
+  <:col :let={session} label="Total elapsed time"><%= session.total_elapsed_time %></:col>
+  <:col :let={session} label="Total elapsed time unit">
+    <%= session.total_elapsed_time_unit %>
+  </:col>
+  <:col :let={session} label="Total distance"><%= session.total_distance %></:col>
+  <:col :let={session} label="Total distance unit"><%= session.total_distance_unit %></:col>
+  <:col :let={session} label="Total timer time"><%= session.total_timer_time %></:col>
+  <:col :let={session} label="Total timer time unit"><%= session.total_timer_time_unit %></:col>
+  <:col :let={session} label="Total elapsed time"><%= session.total_elapsed_time %></:col>
+  <:col :let={session} label="Total elapsed time unit">
+    <%= session.total_elapsed_time_unit %>
+  </:col>
+  <:col :let={session} label="Total moving time"><%= session.total_moving_time %></:col>
+  <:col :let={session} label="Total moving time unit"><%= session.total_moving_time_unit %></:col>
+  <:col :let={session} label="Avg speed"><%= session.avg_speed %></:col>
+  <:col :let={session} label="Avg speed unit"><%= session.avg_speed_unit %></:col>
+  <:col :let={session} label="Max speed"><%= session.max_speed %></:col>
+  <:col :let={session} label="Max speed unit"><%= session.max_speed_unit %></:col>
+  <:col :let={session} label="Min heart rate"><%= session.min_heart_rate %></:col>
+  <:col :let={session} label="Min heart rate unit"><%= session.min_heart_rate_unit %></:col>
+  <:col :let={session} label="Avg heart rate"><%= session.avg_heart_rate %></:col>
+  <:col :let={session} label="Avg heart rate unit"><%= session.avg_heart_rate_unit %></:col>
+  <:col :let={session} label="Max heart rate"><%= session.max_heart_rate %></:col>
+  <:col :let={session} label="Max heart rate unit"><%= session.max_heart_rate_unit %></:col>
+  <:col :let={session} label="Avg power"><%= session.avg_power %></:col>
+  <:col :let={session} label="Avg power unit"><%= session.avg_power_unit %></:col>
+  <:col :let={session} label="Max power"><%= session.max_power %></:col>
+  <:col :let={session} label="Max power unit"><%= session.max_power_unit %></:col>
+  <:col :let={session} label="Threshold power"><%= session.threshold_power %></:col>
+  <:col :let={session} label="Threshold power unit"><%= session.threshold_power_unit %></:col>
+  <:col :let={session} label="Total ascent"><%= session.total_ascent %></:col>
+  <:col :let={session} label="Total ascent unit"><%= session.total_ascent_unit %></:col>
+  <:col :let={session} label="Total descent"><%= session.total_descent %></:col>
+  <:col :let={session} label="Total descent unit"><%= session.total_descent_unit %></:col>
+  <:col :let={session} label="Pool length"><%= session.pool_length %></:col>
+  <:col :let={session} label="Pool length unit"><%= session.pool_length_unit %></:col>
+  <:col :let={session} label="Stroke count"><%= session.stroke_count %></:col>
+  <:col :let={session} label="Stroke count unit"><%= session.stroke_count_unit %></:col>
+  <:col :let={session} label="Avg stroke count"><%= session.avg_stroke_count %></:col>
+  <:col :let={session} label="Avg stroke count unit"><%= session.avg_stroke_count_unit %></:col>
+  <:col :let={session} label="Avg stroke distance"><%= session.avg_stroke_distance %></:col>
+  <:col :let={session} label="Avg stroke distance unit">
+    <%= session.avg_stroke_distance_unit %>
+  </:col>
+  <:col :let={session} label="Timestamp"><%= session.timestamp %></:col>
+  <:action :let={session}>
+    <div class="sr-only">
+      <.link navigate={~p"/sessions/#{session}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/sessions/#{session}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={session}>
+    <.link href={~p"/sessions/#{session}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>
